@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠俱乐部 - 联系我们</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 12px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            margin-left: 25px;
+            height: 55px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img:hover {
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            margin-left: auto;
+            margin-right: 25px;
+            display: flex;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 18px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        .menu-link:hover {
+            background-color: #bb8733;
+            color: white;
+        }
+
+        .menu-link.active {
+            background-color: #FF9800;
+            color: white;
+        }
+        .main-banner {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .banner-title {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* 头部导航 */
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            height: 40px;
+        }
+        
+        nav {
+            margin-left: auto;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #ff6600;
+        }
+        
+        nav a.active {
+            color: #ff6600;
+        }
+        
+        /* 横幅区域 */
+        .banner {
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .banner p {
+            font-size: 1.2rem;
+        }
+        
+        /* 内容区域 */
+        .content {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        /* 关于我们部分 */
+        .about-us {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .about-us > div {
+            width: 30%;
+        }
+        
+        .about-us img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .about-us h2 {
+            margin-bottom: 10px;
+        }
+        
+        .about-us p{
+            font-size: 11px;
+        }
+        /* 团队展示部分 */
+        .our-team {
+            margin-bottom: 50px;
+        }
+        
+        .our-team h2 {
+            margin-bottom: 20px;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .team-member img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .team-member h4 {
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 5px;
+            text-align: left; /* 名字左对齐 */
+        }
+        
+        .team-member p {
+            text-align: left; /* 介绍左对齐 */
+            font-size: 14px; /* 减小字体大小 */
+            line-height: 1.5; /* 调整行高 */
+        }
+        
+        /* 优势部分 */
+        .our-advantages {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        
+        .our-advantages > div {
+            width: 30%;
+        }
+        
+        .advantage-number {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #f2f2f2;
+            margin-bottom: 10px;
+        }
+        
+        /* 联系信息部分 */
+        .contact-info {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        .contact-info h2 {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #ff9933;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        .footer-banner {
+            position: relative;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <img src="images/logo.png" alt="萌宠俱乐部Logo" class="logo-img">
+        <nav class="main-menu">
+            <a href="Cartethyia.html" class="menu-link">首页</a>
+            <a href="Firefly.html" class="menu-link">萌宠宝贝</a>
+            <a href="Timekeeper.html" class="menu-link">注册会员</a>
+            <a href="#" class="menu-link active">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="main-banner">
+        <img src="images/cat.jpg" alt="温馨的猫狗同框图片" class="banner-img">
+        <h1 class="banner-title">拥有萌宠 热爱萌宠 关爱萌宠</h1>
+        <p class="banner-subtitle">Cute Pet Club</p>
+    </section>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <!-- 关于我们 -->
+        <div class="about-us">
+            <div>
+                <h2>关于我们</h2>
+                <img src="images/壁纸/崩坏：星穹铁道/崩坏：星穹铁道-大杂烩.jpg" alt="关于我们图片" placeholder="280x180">
+                <p>萌宠俱乐部成立于 2005 年，为京城成立最早的大型宠物寄养训练专业企业。是经北京市大兴区农委批准立项，并由公安、畜牧和环保等部门验收合格并颁发证照的正规宠物寄养服务机构，位于大兴区黄村镇薄村，毗邻南中轴路，从市区到我中心全程快速路，30 分钟车程即到，交通便利。我中心拥有近 2000 平米的室内饲养空间 150 间超大笼舍，及 6000 多平米的室外活动空间，环境优雅、设施齐备。特别安装全方位视频监控系统，可对寄养宠物的日常生活进行实时掌控。其它配套设施有：犬舍、猫舍、宠物医疗室、美容室、洗浴室、育幼室、隔离室等专业设施。</p>
+            </div>
+            <div>
+                <h2>详细介绍</h2>
+                <p>每间犬（猫）舍包括室内和外院，其中犬（猫）舍室内面积 10 - 15 平米 / 间，房内高 2.7 米，外院面积 5 - 9 平米 / 间，设有防晒网。宠舍面积堪称京城之最。宠舍为砖混复合彩钢顶结构，集中供暖，每间配有落地塑钢玻璃门，保温采光，冬暖夏凉，犬舍内配有专用犬床，上下水，通风换气设备等，是名副其实的星级宠物宾馆，我中心还专门开设了 4 间豪华犬舍，超大面积，超大活动空间，专人喂养。
+                    为了保证您的宠物在寄养时的身体健康，与北京市新星动物医院（经农业部认证）联合，由资深专业的兽医巡诊，保证寄养宠物的健康，并提供一流的宠物医疗服务，承接各种动物手术、术后住院护理、康复疗养服务。
+                    我中心特聘资深军犬训犬大师（持军队训犬师证），对犬进行专业化训练课程，开设从初级、玩执科目到高级军犬科目的全方位训犬课程，您可以根据犬的特点选择适合的课程，专业训犬师组班，收费合理，训练引入国外先进的 “快乐训犬” 技术，杜绝打骂训斥，让犬高高兴兴的学习技巧，接受训练后可以让爱犬更听话、更聪明、更健美，使您在朋友面前更有面子。
+                    我中心饲养人员均经过严格挑选，并经过系统的岗前培训，将本着爱心、诚心、细心的企业服务宗旨，竭诚为您服务，为您的爱宠提供家一样的温馨舒适环境，解决您的后顾之忧。</p>
+            </div>
+            <div>
+                <h2>我们的宗旨</h2>
+                <p>我们始终认为：宠物可能只是生活中的一部分，但是对于宠物来说，你就是它的唯一，爱动物，和它成为朋友，每一个宠物都是一个天使，爱它，它们会带给你意想不到的爱。
+                    现在随着大家生活水平的提高，人们也会在业余生活中选择饲养一个小宠物，现在饲养最多的宠物可能就是小狗小猫了，有些人是初次饲养动物，可能有很多地方不是很了解，那么就由萌宝小宠俱乐部来为您指导服务 。</p>
+                    <img src="images/壁纸/鸣潮/鸣潮-守岸人.png" alt="我们的宗旨图片" placeholder="280x180">
+                </div>
+        </div>
+
+        <!-- 团队展示 -->
+        <div class="our-team">
+            <h2>我们的团队</h2>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="images/壁纸/重返未来1999/重返未来1999-维尔汀1.png" alt="团队成员1" placeholder="220x180">
+                    <h4>维尔汀</h4>
+                    <p>拥有多年司辰(Timekeeper)经验，免疫暴雨，擅长治疗宠物因“暴雨”所导致的伤害，始终把宠物的健康放在首位，对待每一个病例都严谨负责。</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/壁纸/饿殍：明末千里行/饿殍：明末千里行-满穗.png" alt="团队成员2" placeholder="220x180">
+                    <h4>满穗</h4>
+                    <p>专业宠物美容师，持有国际认证资格，擅长各类宠物造型设计，注重宠物的舒适度与安全性。</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/壁纸/明日方舟/明日方舟-能天使.png" alt="团队成员3" placeholder="220x180">
+                    <h4>能天使</h4>
+                    <p>动物行为专家，曾在罗德岛制药公司担任主管一职，专注于宠物行为训练与纠正，采用科学的训练方法，帮助宠物养成良好的生活习惯。</p>
+                </div>
+                <div class="team-member">
+                    <img src="images/壁纸/鸣潮/01鸣潮-卡提希娅2.png" alt="团队成员4" placeholder="220x180">
+                    <h4>卡提希娅</h4>
+                    <p>曾在黎那汐塔照料超百位宠物，无一差评。有爱心的宠物护理师，提供细致入微的照顾，熟悉各类宠物的生活习性，让宠物在寄养期间感受家的温暖。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 优势介绍 -->
+        <div class="our-advantages">
+            <div>
+                <div class="advantage-number">01</div>
+                <p>专业团队：我们的团队成员均经过严格的专业培训，具备丰富的宠物服务经验，能够为您的爱宠提供最专业的照顾。</p>
+            </div>
+            <div>
+                <div class="advantage-number">02</div>
+                <p>优质环境：我们为宠物提供宽敞、舒适、安全的生活空间，所有设施均经过严格消毒，确保宠物的健康与安全。</p>
+            </div>
+            <div>
+                <div class="advantage-number">03</div>
+                <p>贴心服务：我们始终以宠物和主人的需求为中心，提供个性化的服务方案，让每一位宠物和主人都能感受到我们的用心。</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-banner">
+            <img src="images/cw8.jpg" alt="页脚横幅" placeholder="1000x150">
+            <div class="footer-text">
+                <h1>萌宠寄语</h1>
+                <p>萌宠希望每一个爱好小动物的人都能成为它们的好朋友，我们永远为您和您的朋友做最好的服务。</p>
+            </div>
+        </div>
+        <p>220410305 王树铭 HTML5 Copyright © 2020-2030 All Rights Reserved</p>
+    </footer>
+</body>
+</html>

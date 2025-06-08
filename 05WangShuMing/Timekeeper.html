@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠俱乐部 - 注册会员</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 12px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            margin-left: 25px;
+            height: 55px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img:hover {
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            margin-left: auto;
+            margin-right: 25px;
+            display: flex;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 18px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        .menu-link:hover {
+            background-color: #bb8733;
+            color: white;
+        }
+
+        .menu-link.active {
+            background-color: #FF9800;
+            color: white;
+        }
+        .main-banner {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .banner-title {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a.active {
+            color: #ff6600;
+        }
+
+        nav a:hover {
+            color: #ff6600;
+        }
+
+        .banner {
+            position: relative;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .banner-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .banner-text p {
+            font-size: 1.2rem;
+        }
+
+        .registration-form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ff9933;
+            border-radius: 5px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            color: #ff6600;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            /* display: block; */
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-section .nothing input{
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #ff9933;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        .footer-banner {
+            position: relative;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="page-header">
+        <img src="images/logo.png" alt="萌宠俱乐部Logo" class="logo-img">
+        <nav class="main-menu">
+            <a href="Cartethyia.html" class="menu-link">首页</a>
+            <a href="Firefly.html" class="menu-link">萌宠宝贝</a>
+            <a href="#" class="menu-link active">注册会员</a>
+            <a href="Vertin.html" class="menu-link">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="main-banner">
+        <img src="images/cat.jpg" alt="温馨的猫狗同框图片" class="banner-img">
+        <h1 class="banner-title">拥有萌宠 热爱萌宠 关爱萌宠</h1>
+        <p class="banner-subtitle">Cute Pet Club</p>
+    </section>
+
+    <div class="registration-form">
+        <div class="form-section">
+            <h3>会员注册</h3>
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="email">邮箱:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">手机:</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="password">设置密码:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">确认密码:</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+            </div>
+        </div>
+
+        <div class="form-section infom">
+            <h3>宠物信息</h3>
+            <div class="form-group">
+                <label for="pet-type">所属种类:</label>
+                <select id="pet-type" name="pet-type">
+                    <option value="dog">狗</option>
+                    <option value="cat">猫</option>
+                    <option value="rabbit">兔子</option>
+                </select>
+            </div>
+            <div class="form-group,nothing">
+                <label for="pet-gender">性别:</label>
+                <input type="radio" id="male" name="pet-gender" value="male">
+                <label for="male">男</label>
+                <input type="radio" id="female" name="pet-gender" value="female">
+                <label for="female">女</label>
+            </div>
+            <div class="form-group">
+                <label for="pet-age">年龄:</label>
+                <input type="text" id="pet-age" name="pet-age">
+            </div>
+            <div class="form-group,nothing">
+                <label for="pet-food">喜欢的食物:</label>
+                <input type="checkbox" id="bread" name="pet-food" value="bread">
+                <label for="meat">面食</label>
+                <input type="checkbox" id="grass" name="pet-food" value="grass">
+                <label for="meat">青草</label>
+                <input type="checkbox" id="meat" name="pet-food" value="meat">
+                <label for="meat">肉类</label>
+                <input type="checkbox" id="grain" name="pet-food" value="grain">
+                <label for="grain">杂粮</label>
+                <input type="checkbox" id="fruit" name="pet-food" value="fruit">
+                <label for="fruit">水果</label>
+                <input type="checkbox" id="vega" name="pet-food" value="vega">
+                <label for="fruit">蔬菜</label>
+            </div>
+            <div class="form-group">
+                <label for="remark" style="line-height: 100%;">备注:</label>
+                <textarea id="remark" name="remark" rows="3"></textarea>
+            </div>
+        </div>
+
+        <button class="submit-button">完成注册</button>
+    </div>
+
+    <footer>
+        <div class="footer-banner">
+            <img src="images/cw8.jpg" alt="页脚横幅" placeholder="1000x150">
+            <div class="footer-text">
+                <h1>萌宠寄语</h1>
+                <p>萌宠希望每一个爱好小动物的人都能成为它们的好朋友，我们永远为您和您的朋友做最好的服务。</p>
+            </div>
+        </div>
+        <p>220410305 王树铭 HTML5 Copyright © 2020-2030 All Rights Reserved</p>
+    </footer>
+</body>
+
+</html>

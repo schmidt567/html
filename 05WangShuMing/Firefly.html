@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠俱乐部 - 萌宠宝贝</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #444;
+            line-height: 1.6;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 12px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            margin-left: 25px;
+            height: 55px;
+        }
+
+        .logo-img:hover {
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            margin-left: auto;
+            margin-right: 25px;
+            display: flex;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 18px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        .menu-link:hover {
+            background-color: #bb8733;
+            color: white;
+        }
+
+        .menu-link.active {
+            background-color: #FF9800;
+            color: white;
+        }
+        .main-banner {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .banner-title {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .content-area {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            margin: 50px 0 35px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #FF9800;
+            border-radius: 2px;
+        }
+        .pet-category {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid #FF9800;
+            color: #FF9800;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: #FF9800;
+            color: white;
+        }
+        .pets-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .pet-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pet-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .pet-info {
+            padding: 18px;
+        }
+
+        .pet-name {
+            font-size: 1.3rem;
+            color: #FF9800;
+            margin-bottom: 8px;
+        }
+
+        .pet-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .pet-adopt-btn {
+            display: block;
+            width: 100%;
+            background: #FF9800;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .pet-adopt-btn:hover {
+            background: #e68a00;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0 40px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            margin: 0 5px;
+            background: white;
+            border: 1px solid #ddd;
+            color: #666;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background: #FF9800;
+            color: white;
+            border-color: #FF9800;
+        }
+        .page-footer {
+            background: #FF9800;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 70px;
+        }
+
+        footer {
+            background-color: #ff9933;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        .footer-banner {
+            position: relative;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <img src="images/logo.png" alt="萌宠俱乐部Logo" class="logo-img">
+        <nav class="main-menu">
+            <a href="Cartethyia.html" class="menu-link">首页</a>
+            <a href="#" class="menu-link active">萌宠宝贝</a>
+            <a href="Timekeeper.html" class="menu-link">注册会员</a>
+            <a href="Vertin.html" class="menu-link">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="main-banner">
+        <img src="images/cat.jpg" alt="温馨的猫狗同框图片" class="banner-img">
+        <h1 class="banner-title">拥有萌宠 热爱萌宠 关爱萌宠</h1>
+        <p class="banner-subtitle">Cute Pet Club</p>
+    </section>
+
+
+    <main class="content-area">
+        <section class="pet-category">
+            <button class="category-btn active" data-category="all">全部宠物</button>
+            <button class="category-btn" data-category="dog">狗狗</button>
+            <button class="category-btn" data-category="cat">猫咪</button>
+            <button class="category-btn" data-category="other">其他宠物</button>
+        </section>
+
+        <section class="pets-gallery">
+            <div class="pet-card" data-category="dog">
+                <img src="images/cw5.jpg" alt="金毛犬" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">阳阳</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 金毛</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 1岁</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 公</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 温顺</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+
+            <div class="pet-card" data-category="cat">
+                <img src="images/cw7.jpg" alt="布偶猫" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">糖糖</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 布偶</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 8个月</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 母</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 粘人</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+
+            <div class="pet-card" data-category="dog">
+                <img src="images/cw1.jpg" alt="柯基犬" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">豆豆</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 柯基</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 2岁</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 公</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 活泼</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+
+            <div class="pet-card" data-category="cat">
+                <img src="images/cw9.jpg" alt="英短猫" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">灰灰</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 英短</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 1岁半</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 公</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 独立</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+
+            <div class="pet-card" data-category="other">
+                <img src="images/cw8.jpg" alt="垂耳兔" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">绒绒</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 垂耳兔</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 6个月</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 母</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 温顺</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+
+            <div class="pet-card" data-category="dog">
+                <img src="images/cw3.jpg" alt="泰迪犬" class="pet-img">
+                <div class="pet-info">
+                    <h3 class="pet-name">乐乐</h3>
+                    <div class="pet-details">
+                        <div class="detail-item"><span class="detail-label">品种:</span> 泰迪</div>
+                        <div class="detail-item"><span class="detail-label">年龄:</span> 3岁</div>
+                        <div class="detail-item"><span class="detail-label">性别:</span> 母</div>
+                        <div class="detail-item"><span class="detail-label">性格:</span> 聪明</div>
+                    </div>
+                    <a href="#" class="pet-adopt-btn">我要领养</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="pagination">
+            <a href="#" class="page-btn active">1</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-banner">
+            <img src="images/cw8.jpg" alt="页脚横幅" placeholder="1000x150">
+            <div class="footer-text">
+                <h1>萌宠寄语</h1>
+                <p>萌宠希望每一个爱好小动物的人都能成为它们的好朋友，我们永远为您和您的朋友做最好的服务。</p>
+            </div>
+        </div>
+        <p>220410305 王树铭 HTML5 Copyright © 2020-2030 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const petCards = document.querySelectorAll('.pet-card');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-category');
+                petCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>    

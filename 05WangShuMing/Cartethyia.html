@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萌宠俱乐部 - 首页</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #444;
+            line-height: 1.6;
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            padding: 12px 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-img {
+            margin-left: 25px;
+            height: 55px;
+        }
+
+        .logo-img:hover {
+            opacity: 0.9;
+        }
+
+        .main-menu {
+            margin-left: auto;
+            margin-right: 25px;
+            display: flex;
+        }
+
+        .menu-link {
+            text-decoration: none;
+            color: #555;
+            padding: 10px 18px;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        .menu-link:hover {
+            background-color: #bb8733;
+            color: white;
+        }
+
+        .menu-link.active {
+            background-color: #FF9800;
+            color: white;
+        }
+        .main-banner {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .banner-title {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+        }
+
+        .banner-subtitle {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .content-area {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.1rem;
+            margin: 50px 0 35px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 80px;
+            height: 4px;
+            background: #FF9800;
+            border-radius: 2px;
+        }
+        .services-section {
+            margin-bottom: 60px;
+        }
+
+        .services-wrapper {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-box {
+            background: #FF9800;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-box:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 185px;
+            object-fit: cover;
+        }
+
+        .service-info {
+            padding: 18px;
+            color: white;
+            text-align: center;
+        }
+
+        .service-name {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            font-size: 0.95rem;
+        }
+        .care-tips {
+            margin: 60px 0;
+        }
+
+        .tips-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .tip-card {
+            flex: 1 1 320px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .tip-img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .tip-content {
+            padding: 20px;
+        }
+
+        .tip-title {
+            color: #FF9800;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .tip-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tip-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+        .doctors-team {
+            margin: 70px 0 50px;
+        }
+
+        .team-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 35px;
+            margin: 40px 0;
+        }
+
+        .doctor-card {
+            text-align: center;
+            width: 170px;
+        }
+
+        .doctor-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #FF9800;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .doctor-name {
+            margin: 18px 0 5px;
+            font-size: 1.15rem;
+        }
+
+        .doctor-specialty {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .team-quote {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #555;
+            margin: 50px 0 60px;
+            font-style: italic;
+            position: relative;
+        }
+
+        footer {
+            background-color: #ff9933;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        
+        .footer-banner {
+            position: relative;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .footer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <img src="images/logo.png" alt="萌宠俱乐部Logo" class="logo-img">
+        <nav class="main-menu">
+            <a href="#" class="menu-link active">首页</a>
+            <a href="Firefly.html" class="menu-link">萌宠宝贝</a>
+            <a href="Timekeeper.html" class="menu-link">注册会员</a>
+            <a href="Vertin.html" class="menu-link">联系我们</a>
+        </nav>
+    </header>
+
+    <section class="main-banner">
+        <img src="images/cat.jpg" alt="温馨的猫狗同框图片" class="banner-img">
+        <h1 class="banner-title">拥有萌宠 热爱萌宠 关爱萌宠</h1>
+        <p class="banner-subtitle">Cute Pet Club</p>
+    </section>
+
+    <main class="content-area">
+        <section class="services-section">
+            <h2 class="section-title">欢迎来到萌宠俱乐部</h2>
+            <div class="services-wrapper">
+                <div class="service-box">
+                    <img src="images/cw4.jpg" alt="宠物喂养" class="service-img">
+                    <div class="service-info">
+                        <h3 class="service-name">宠物喂养</h3>
+                        <p class="service-desc">科学喂养，为爱宠提供均衡营养。</p>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <img src="images/cw5.jpg" alt="宠物美容" class="service-img">
+                    <div class="service-info">
+                        <h3 class="service-name">宠物美容</h3>
+                        <p class="service-desc">专业美容，让爱宠焕发光彩。</p>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <img src="images/dc.jpg" alt="宠物领养" class="service-img">
+                    <div class="service-info">
+                        <h3 class="service-name">宠物领养</h3>
+                        <p class="service-desc">爱心领养，给流浪动物一个家。</p>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <img src="images/cw1.jpg" alt="宠物健康" class="service-img">
+                    <div class="service-info">
+                        <h3 class="service-name">宠物健康</h3>
+                        <p class="service-desc">健康生活，定期体检疾病预防。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="care-tips">
+            <h2 class="section-title">宠物护理</h2>
+            <div class="tips-wrapper">
+                <div class="tip-card">
+                    <img src="images/yl13.jpg" alt="幼犬易感细小病毒" class="tip-img">
+                    <div class="tip-content">
+                        <h3 class="tip-title"><a href="#">幼犬易感细小病毒</a></h3>
+                        <p class="tip-text">细小病毒对幼犬危害大，及时接种疫苗是关键，注意环境卫生和隔离。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <img src="images/yl14.jpg" alt="幼犬注射疫苗的注意事项" class="tip-img">
+                    <div class="tip-content">
+                        <h3 class="tip-title"><a href="#">幼犬注射疫苗的注意事项</a></h3>
+                        <p class="tip-text">疫苗前确保幼犬健康，避开应激期，按时完成全程接种，观察不良反应。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <img src="images/yl2.jpg" alt="小狗呕吐怎么办" class="tip-img">
+                    <div class="tip-content">
+                        <h3 class="tip-title"><a href="#">小狗呕吐怎么办</a></h3>
+                        <p class="tip-text">小狗呕吐可能由多种原因引起，及时禁食观察，严重或持续需立即就医。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="doctors-team">
+            <h2 class="section-title">医疗团队</h2>
+            <div class="team-wrapper">
+                <div class="doctor-card">
+                    <img src="images/ys2.jpg" alt="团队成员1" class="doctor-img">
+                    <h4 class="doctor-name">张医生</h4>
+                    <p class="doctor-specialty">资深宠物内科专家，经验丰富。</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/ys3.jpg" alt="团队成员2" class="doctor-img">
+                    <h4 class="doctor-name">李医生</h4>
+                    <p class="doctor-specialty">动物行为学专家，耐心细致。</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/ys5.jpg" alt="团队成员3" class="doctor-img">
+                    <h4 class="doctor-name">王医生</h4>
+                    <p class="doctor-specialty">外科手术主刀医师，技术精湛。</p>
+                </div>
+                <div class="doctor-card">
+                    <img src="images/ys4.jpg" alt="团队成员4" class="doctor-img">
+                    <h4 class="doctor-name">赵医生</h4>
+                    <p class="doctor-specialty">宠物营养师，注重预防保健。</p>
+                </div>
+            </div>
+            <p class="team-quote">我们的医疗团队是您宠物健康最坚实的后盾，专业且充满爱心。</p>
+        </section>                 
+    </main>
+
+    <footer>
+        <div class="footer-banner">
+            <img src="images/cw8.jpg" alt="页脚横幅" placeholder="1000x150">
+            <div class="footer-text">
+                <h1>萌宠寄语</h1>
+                <p>萌宠希望每一个爱好小动物的人都能成为它们的好朋友，我们永远为您和您的朋友做最好的服务。</p>
+            </div>
+        </div>
+        <p>220410305 王树铭 HTML5 Copyright © 2020-2030 All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
